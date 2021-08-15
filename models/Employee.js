@@ -45,6 +45,7 @@ Role.init(
             type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true,
+            autoIncrement: true
         },
         title: {
             type: DataTypes.STRING(30),
@@ -76,6 +77,7 @@ Department.init (
             type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true,
+            autoIncrement: true
         },
         name: {
             type: DataTypes.STRING(30),
@@ -87,7 +89,7 @@ Department.init (
       timestamps: false,
       freezeTableName: true,
       underscored: true,
-      modelName: 'Role',
+      modelName: 'Department',
     }
 );
 

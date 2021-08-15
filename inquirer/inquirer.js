@@ -1,8 +1,9 @@
 const inquirer = require('inquirer');
+const { Employee, Role, Department } = require('../models/Employee');
 
 function menu() {
     inquirer.prompt({ // Main menu
-        name: 'query',
+        name: 'queryuser',
         type: 'list',
         message: 'What would you like to do?',
         choices: [
@@ -78,7 +79,14 @@ function viewAllDepartments () {
 }
 
 function addDepartment () {
-
+    inquirer.prompt({
+        name: 'name',
+        type: 'input',
+        message: 'What is the name of the Department?',
+    })
+    .then(data => {
+        console.log(newDepartment(data))
+    })
 }
 
 function quit () {
@@ -94,14 +102,8 @@ function quit () {
     })
 }
 
-module.exports = {
-    menu,
-    viewAllEmployees,
-    addEmployee,
-    updateEmployeeRole,
-    viewAllRoles,
-    addRole,
-    viewAllDepartments,
-    addDepartment,
-    quit
+function newDepartment (data) {
+    return new Department(data.name);
 }
+
+module.exports = { menu };
