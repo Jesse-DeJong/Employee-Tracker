@@ -1,10 +1,9 @@
 // Import Dependencies
 const mysql = require('mysql2');
+const express = require('express');
 const inquirer = require('inquirer');
 const cTable = require('console.table');
-
-const express = require('express');
-const routes = require('./routes');
+const { Sequelize } = require('sequelize');
 
 // Express -- Setup
 const app = express();
@@ -13,15 +12,18 @@ const PORT = process.env.PORT || 8080;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Refer to routes
-app.use(routes);
-
-// Mysql2 -- create the connection to database
-const connection = mysql.createConnection({
+// Sequelize -- Setup
+const sequelize = new Sequelize('database', 'username', 'password', {
   host: 'localhost',
-  user: 'root',
-  database: 'organisation_db'
+  dialect: 'mysql'
 });
+
+// // Mysql2 -- create the connection to database
+// const connection = mysql.createConnection({
+//   host: 'localhost',
+//   user: 'root',
+//   database: 'organisation_db'
+// });
 
 
 
